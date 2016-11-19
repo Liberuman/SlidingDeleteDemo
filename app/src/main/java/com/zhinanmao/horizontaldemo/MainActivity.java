@@ -159,6 +159,7 @@ public class MainActivity extends Activity  {
                                     @Override
                                     public void run() {
                                         if (isRight) {
+                                            lastPosition = -1;
                                             ((HorizontalScrollView) view).fullScroll(View.FOCUS_LEFT);
                                         } else {
                                             lastPosition = position;
