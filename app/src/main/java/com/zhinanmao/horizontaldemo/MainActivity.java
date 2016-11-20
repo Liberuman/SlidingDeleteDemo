@@ -29,6 +29,7 @@ public class MainActivity extends Activity  {
     private float lastXOffset = 0;
     private float downX =  0;
     private boolean isRight = false;
+    private boolean closeOtherTag = false;//判断点击是否是为了关闭其他的item
     private List<DataBean> data = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +117,8 @@ public class MainActivity extends Activity  {
                                 if (openedItemView != null) {
                                     final HorizontalScrollView horizontalScrollView = ((HorizontalScrollView)openedItemView.findViewById(R.id.horizontal_scrollview));
                                     horizontalScrollView.smoothScrollTo(0, 0);
+                                    lastPosition = -1;//关闭展开item后均要此步骤
+                                    closeOtherTag = true;
                                 }
                             }
                             break;
@@ -139,7 +142,13 @@ public class MainActivity extends Activity  {
                                         }
                                     });
                                 } else if (lastPosition == -1) {
-                                   Toast.makeText(MainActivity.this, "触发了点击事件", Toast.LENGTH_SHORT).show();
+                                   if (closeOtherTag) {
+                                        //此次点击是为了关闭其他的item
+                                        closeOtherTag = false;
+                                   } else {
+                                        //点击是为了触发点击事件
+                                        Toast.makeText(getContext(), "触发了点击事件",Toast.LENGTH_SHORT).show();                                  
+                                   }
                                 } else {
                                     lastPosition = -1;
                                 }
