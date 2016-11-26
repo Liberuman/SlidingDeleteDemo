@@ -116,6 +116,7 @@ public class MainActivity extends Activity  {
                                 if (openedItemView != null) {
                                     final HorizontalScrollView horizontalScrollView = ((HorizontalScrollView)openedItemView.findViewById(R.id.horizontal_scrollview));
                                     horizontalScrollView.smoothScrollTo(0, 0);
+                                    lastPosition = -1;//关闭展开item后均要此步骤                              
                                 }
                             }
                             break;
@@ -138,8 +139,8 @@ public class MainActivity extends Activity  {
                                             lastPosition = -1;
                                         }
                                     });
-                                } else if (lastPosition == -1) {
-                                   Toast.makeText(MainActivity.this, "触发了点击事件", Toast.LENGTH_SHORT).show();
+                                } else if (lastPosition == -1) {                                                                     
+                                        Toast.makeText(getContext(), "触发了点击事件",Toast.LENGTH_SHORT).show();                                                                     
                                 } else {
                                     lastPosition = -1;
                                 }
